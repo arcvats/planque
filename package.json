@@ -1,0 +1,35 @@
+{
+  "name": "planque",
+  "version": "1.0.0",
+  "description": "logging middleware and log stashing for node",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src/ -d --out-dir build",
+    "start": "node build/index.js",
+    "debug": "nodemon --exec babel-node --inspect=0.0.0.0:9229 src/index.js",
+    "test": "mocha --timeout 60000 --require @babel/register 'src/**/**test.js'",
+    "test:coverage": "nyc --reporter=html mocha --require @babel/register 'src/**/**test.js'",
+    "clean": "rm -rf build/*",
+    "format": "prettier src/**/* --write"
+  },
+  "repository": "https://github.com/arcvats/planque.git",
+  "author": "Archit <archit5793@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/node": "^7.7.0",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-flow": "^7.0.0",
+    "chai": "^4.2.0",
+    "flow-bin": "^0.111.3",
+    "flow-typed": "^2.6.2",
+    "mocha": "^6.2.2",
+    "nodemon": "^1.19.4",
+    "nyc": "^14.1.1",
+    "prettier": "^1.18.2",
+    "sinon": "^7.5.0"
+  }
+}
