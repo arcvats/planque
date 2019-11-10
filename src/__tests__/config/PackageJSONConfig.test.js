@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { stub, createSandbox } from 'sinon';
+import { createSandbox } from 'sinon';
 
 import PackageJSONConfig from '../../config/PackageJSONConfig';
 
@@ -24,7 +24,7 @@ describe('PackageJSONConfig', () => {
     it('should read planque object from package.json file', async () => {
       const initialPath = process.cwd();
       const sandbox = createSandbox();
-      const stubbed = sandbox
+      sandbox
         .stub(process, 'cwd')
         .returns(`${initialPath}/src/__mocks__`);
       const instance = new PackageJSONConfig();
