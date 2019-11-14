@@ -8,7 +8,7 @@ describe('PlanqueRcConfig', () => {
   describe('constructor', () => {
     it('should create a config object for planqueRcConfig', () => {
       const planqueRcConfig = new PlanqueRcConfig();
-      expect(planqueRcConfig.filepath).to.equal(`${process.cwd()}/.planquerc`);
+      expect(planqueRcConfig._filepath).to.equal(`${process.cwd()}/.planquerc`);
     });
   });
 

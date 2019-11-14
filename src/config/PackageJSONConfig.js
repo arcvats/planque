@@ -20,7 +20,7 @@ class PackageJSONConfig extends FileHelper {
       return { data: config, success: true, error: null };
     } catch (err) {
       console.warn(
-        `Warning: ${super.filepath} was not processed.`,
+        `Warning: ${super._filepath} was not processed.`,
         err.message,
       );
       return { data: null, success: false, error: err.message };

@@ -3,10 +3,10 @@ import FileHelper from '../../utils/FileHelper';
 
 describe('FileHelper', () => {
   describe('constructor', () => {
-    it('should create instance of FileHelper with filepath with current working directory and given file name', () => {
+    it('should create instance of FileHelper with _filepath with current working directory and given file name', () => {
       const filename = 'package.json';
       const fh = new FileHelper(filename);
-      expect(fh.filepath).to.equal(`${process.cwd()}/${filename}`);
+      expect(fh._filepath).to.equal(`${process.cwd()}/${filename}`);
     });
   });
 

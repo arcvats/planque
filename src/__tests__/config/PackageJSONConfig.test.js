@@ -7,7 +7,7 @@ describe('PackageJSONConfig', () => {
   describe('constructor', () => {
     it('should create instance of PackageJSONConfig with package.json file', () => {
       const instance = new PackageJSONConfig();
-      expect(instance.filepath).to.equal(`${process.cwd()}/package.json`);
+      expect(instance._filepath).to.equal(`${process.cwd()}/package.json`);
     });
   });
   describe('read', () => {
@@ -24,9 +24,7 @@ describe('PackageJSONConfig', () => {
     it('should read planque object from package.json file', async () => {
       const initialPath = process.cwd();
       const sandbox = createSandbox();
-      sandbox
-        .stub(process, 'cwd')
-        .returns(`${initialPath}/src/__mocks__`);
+      sandbox.stub(process, 'cwd').returns(`${initialPath}/src/__mocks__`);
       const instance = new PackageJSONConfig();
       const config = await instance.read();
       expect(config.success).to.be.true;

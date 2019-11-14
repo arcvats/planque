@@ -1,32 +1,21 @@
-import { readFile, existsSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
-import { promisify } from 'util';
+import Errors from '../errors/Errors';
+import { warn } from '../utils/helpers';
 
 class FileHelper {
   constructor(filepath) {
-    this.filepath = join(process.cwd(), filepath);
+    this._filepath = join(process.cwd(), filepath);
   }
-  async read() {
-    if (!existsSync(this.filepath)) {
-      return {
-        data: null,
-        success: false,
-        error: 'no file exists/unable to resolve',
-      };
+  read() {
+    if (!existsSync(this._filepath)) {
+      throw Errors.create('InternalError', 'no file exists/unable to resolve');
     }
-    try {
-      const read = promisify(readFile);
-      const data = await read(this.filepath);
-      if (data) {
-        return { data: data.toString(), success: true, error: null };
-      }
-      return { data: null, success: false, error: 'unsupported data type' };
-    } catch (err) {
-      console.warn(
-        `Warning: ${this.filepath} file was not processed. `,
-        err.message,
-      );
-      return { data: null, success: false, error: err.message };
+    const data = readFileSync(this._filepath);
+    if (data) {
+      return { data: data.toString(), success: true, message: null };
+    } else {
+      throw Errors.create('InternalError', 'file empty');
     }
   }
 }
